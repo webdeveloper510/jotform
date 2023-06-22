@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://unpkg.com/range-slider-element@latest/dist/styles.css">
+    <script src="https://unpkg.com/range-slider-element@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  
+    <section class="jot-form">
+        <form action=" http://15.206.159.231:8000/submit/" method="POST">
+
+          
+          <!-- <div id="google_translate_element"></div> -->
+
+            <!-- <select id="language-picker-select">
+                <option lang="de" value="deutsch" selected>English (US)</option>
+                <option lang="en" value="english">Hebrew</option>
+            </select> -->
+            <section id="language-picker-select">
+
+              <div id="google_translate_element"></div>
+            </section>
+            <h2>Personal Details</h2>
+            <div class="form-list">
+              <div class="input-container">
+                <label for="">Name</label>
+                <input type="text" name="name">
+              </div>
+          
+              <div class="input-container">
+                <label for="">ID Number</label>
+                <input type="number" name="idNumber">
+              </div>
+          
+              <div class="input-container">
+                <label for="">Email</label>
+                <input type="email" name="email">
+              </div>
+          
+              <div class="input-container">
+                <label for="">Address</label>
+                <input type="text" name="address">
+              </div>
+          
+              <div class="input-container number">
+                <label for="">Home/Work Phone Number</label>
+                <input type="number" name="homePhoneNumber" placeholder="Phone Number">
+                <input type="number" name="homePhoneAreaCode" placeholder="Area Code">
+              </div>
+          
+              <div class="input-container number">
+                <label for="">Mobile Phone Number</label>
+                <input type="number" name="mobilePhoneNumber" placeholder="Phone Number">
+                <input type="number" name="mobilePhoneAreaCode" placeholder="Area Code">
+              </div>
+            </div>
+
+            <h2>Accused Details</h2>
+            <div class="form-list">
+              <div class="input-container">
+                <label for="">Accused Name</label>
+                <input type="text" name="accuseName">
+              </div>
+          
+              <div class="input-container">
+                <label for="">ID/VAT Number</label>
+                <input type="number" name="vatNumber">
+              </div>
+          
+              <div class="input-container">
+                <label for="">Address</label>
+                <input type="text" name="accuseAddress">
+              </div>
+          
+              <div class="input-container number">
+                <label for="">Home/Work Phone Number</label>
+                <input type="number" name="accuseHomePhoneNumber" placeholder="Phone Number">
+                <input type="number" name="accuseHomePhoneAreaCode" placeholder="Area Code">
+              </div>
+          
+              <div class="input-container number">
+                <label for="">Mobile Phone Number</label>
+                <input type="number" name="accuseMobilePhoneNumber" placeholder="Phone Number">
+                <input type="number" name="accuseMobilePhoneAreaCode" placeholder="Area Code">
+              </div>
+          
+              <div class="input-container">
+                <label for="">Email</label>
+                <input type="email" name="accuseEmail">
+              </div>
+            </div>
+
+            <h2>Case Details</h2>
+
+            <div class="form-list">
+                <div class="input-container">
+                  <label for="">Place of Offense</label>
+                  <input type="text" name="placeOfOffense">
+                </div>
+                <div id="cid_35" class="form-input-wide input-container" data-layout="full">
+                    <iframe src="https://calendar.google.com/calendar/embed?title=Put%20your%20Title%20here&amp;showCalendars=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=8d3fc8l9g04n7r9im45fsn08ak%40group.calendar.google.com&amp;color=%238D6F47&amp;ctz=America%2FNew_York" style="border-width:0" width="350" height="200" frameborder="0" scrolling="no"></iframe>
+                </div>
+
+                <div class="input-container">
+                  <label for="">The relevant deal address</label>
+                  <input type="text" name="relevantDealAddress">
+                </div>
+            
+                <div class="input-container">
+                  <label for="">Address of the delivered property</label>
+                  <input type="text" name="deliveredPropertyAddress">
+                </div>
+        
+                <div class="input-container">
+                  <label for="">The address of the claimed offense</label>
+                  <input type="text" name="claimedOffenseAddress">
+                </div>
+
+                <div class="input-container range">
+                  <label for="">Severity Level</label>
+                  <input type="range" name="severityLevel" min="0" max="100" step="1">
+                </div>
+
+                <div class="input-container text">
+                  <label for="">The story in essence</label>
+                  <textarea name="story" cols="30" rows="10"></textarea>
+                </div>
+              </div>
+
+            <h2>Upload all relevant files</h2>
+
+            <div class="form-list">
+              <div class="input upload-btn-wrapper">
+                <button class="btn">Upload a file</button>
+                <input type="file" name="myfile" />
+              </div>
+          
+              <div class="drop-zone input-container">
+                <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                <input type="file" name="myFile2" class="drop-zone__input">
+              </div>
+          
+              <div class="input-container">
+                <label for="">File #1</label>
+                <input type="file" name="file1">
+              </div>
+          
+              <div class="input-container">
+                <label for="">File #2</label>
+                <input type="file" name="file2">
+              </div>
+          
+              <div class="input-container">
+                <label for="">File #3</label>
+                <input type="file" name="file3">
+              </div>
+          
+              <div class="input-container">
+                <label for="">File #4</label>
+                <input type="file" name="file4">
+              </div>
+          
+              <div class="input-container">
+                <label for="">File #5</label>
+                <input type="file" name="file5">
+              </div>
+            </div>
+
+            <h2>Witness</h2>
+
+            <div class="form-list">
+                <div class="input-container">
+                    <label for="">Witness #1</label>
+                    <input type="text" name="witness1">
+                </div>
+
+                <div class="input-container">
+                  <label for="">Witness #2</label>
+                  <input type="text" name="witness2">
+                </div>
+
+                <div class="input-container">
+                    <label for="">Witness #3</label>
+                    <input type="text" name="witness3">
+                </div>
+            </div>
+            <h2>Signature</h2>
+            <p>I hereby declare that the information I provided is truthful as far as I know</p>
+            <div class="form-list">
+                <div class="input-container signature">
+                    <label for="">Signature</label>
+                    <div class="signature-main">
+                        <canvas id="sig-canvas" width="550" height="160">
+                            Get a better browser, bro.
+                        </canvas>
+                        <button type="button" class="btn btn-default" id="sig-clearBtn">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="submitBtn" class="submit-btn">Submit</button>
+        </form>
+        <div class="loader">
+          <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </section>
+    
+</body>
+
+<script>
+  console.log('Called123456');
+  document.addEventListener('DOMContentLoaded', function() {
+ function submitForm(event) {
+    event.preventDefault();
+    var loader = document.querySelector('.loader');
+    
+    console.log("nkjnkj")
+    var form = document.querySelector('form');
+      // Get the input values
+    var name = document.querySelector('input[name="name"]').value;
+    var idNumber = document.querySelector('input[name="idNumber"]').value;
+    var email = document.querySelector('input[name="email"]').value;
+    var address = document.querySelector('input[name="address"]').value;
+    var homePhoneNumber = document.querySelector('input[name="homePhoneNumber"]').value;
+    var homePhoneAreaCode = document.querySelector('input[name="homePhoneAreaCode"]').value;
+    var mobilePhoneNumber = document.querySelector('input[name="mobilePhoneNumber"]').value;
+    var mobilePhoneAreaCode = document.querySelector('input[name="mobilePhoneAreaCode"]').value;
+    var accuseName = document.querySelector('input[name="accuseName"]').value;
+    var vatNumber = document.querySelector('input[name="vatNumber"]').value;
+    var accuseAddress = document.querySelector('input[name="accuseAddress"]').value;
+    var accuseHomePhoneNumber = document.querySelector('input[name="accuseHomePhoneNumber"]').value;
+    var accuseHomePhoneAreaCode = document.querySelector('input[name="accuseHomePhoneAreaCode"]').value;
+    var accuseMobilePhoneNumber = document.querySelector('input[name="accuseMobilePhoneNumber"]').value;
+    var accuseMobilePhoneAreaCode = document.querySelector('input[name="accuseMobilePhoneAreaCode"]').value;
+    var accuseEmail = document.querySelector('input[name="accuseEmail"]').value;
+    var placeOfOffense = document.querySelector('input[name="placeOfOffense"]').value;
+    var relevantDealAddress = document.querySelector('input[name="relevantDealAddress"]').value;
+    var deliveredPropertyAddress = document.querySelector('input[name="deliveredPropertyAddress"]').value;
+    var claimedOffenseAddress = document.querySelector('input[name="claimedOffenseAddress"]').value;
+    var myfile = document.querySelector('input[name="myfile"]').files[0];
+    var myFile2 = document.querySelector('input[name="myFile2"]').files[0];
+    var file1 = document.querySelector('input[name="file1"]').files[0];
+    var file2 = document.querySelector('input[name="file2"]').files[0];
+    var file3 = document.querySelector('input[name="file3"]').files[0];
+    var file4 = document.querySelector('input[name="file4"]').files[0];
+    var file5 = document.querySelector('input[name="file5"]').files[0];
+    var witness1 = document.querySelector('input[name="witness1"]').value;
+    var witness2 = document.querySelector('input[name="witness2"]').value;
+    var witness3 = document.querySelector('input[name="witness3"]').value;
+
+    console.log("Name", name)
+
+    var formData = new FormData();
+    formData.append('name', name);
+    formData.append('idnumber', idNumber);
+    formData.append('email1', email);
+    formData.append('address1', address);
+    formData.append('phone', homePhoneNumber);
+    formData.append('area1', homePhoneAreaCode);
+    formData.append('mobile', mobilePhoneNumber);
+    formData.append('area2', mobilePhoneAreaCode);
+    formData.append('accuse', accuseName);
+    formData.append('vat', vatNumber);
+    formData.append('address2', accuseAddress);
+    formData.append('phn', accuseHomePhoneNumber);
+    formData.append('area3', accuseHomePhoneAreaCode);
+    formData.append('accuse_mobile', accuseMobilePhoneNumber);
+    formData.append('mobile_area', accuseMobilePhoneAreaCode);
+    formData.append('email2', accuseEmail);
+    formData.append('offense', placeOfOffense);
+    formData.append('relevant', relevantDealAddress);
+    formData.append('deliverd', deliveredPropertyAddress);
+    formData.append('claimed', claimedOffenseAddress);
+    formData.append('myfile', myfile);
+    formData.append('myFile2', myFile2);
+    formData.append('file1', file1);
+    formData.append('file2', file2);
+    formData.append('file1', file3);
+    formData.append('file2', file4);
+    formData.append('file3', file5);
+    formData.append('witness1', witness1);
+    formData.append('witness2', witness2);
+    formData.append('witness3', witness3);
+
+    loader.style.display = 'flex';
+
+    const url = 'http://15.206.159.231:8000/submit/';
+
+    axios.post(url, formData)
+    .then(response => {
+      console.log('Success');
+      console.log(response.data);
+      localStorage.setItem("pdf_id", response.data.pdf_id);
+      console.log(response.data.pdf_id);
+
+      window.location.href ='http://127.0.0.1:5500/jotform-html/payment.html';
+      
+    })
+    .catch(error => {
+      console.log('Error: ' + error.response.status);
+    })
+    .finally(() => {
+      loader.style.display = 'none';
+    });
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.addEventListener('click', submitForm);
+});
+
+    const elements = document.querySelectorAll(['range-slider']);
+
+    elements.forEach(element => {
+    element.insertAdjacentHTML('afterend', `
+        <output>${element.value}</output>
+    `);
+    });
+
+    document.addEventListener('input', e => {
+        const input = e.target;
+        const output = input.nextElementSibling;
+        if (output) {
+            output.textContent = input.value;
+        }
+    });
+
+    document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+  const dropZoneElement = inputElement.closest(".drop-zone");
+
+  dropZoneElement.addEventListener("click", (e) => {
+    inputElement.click();
+  });
+
+  inputElement.addEventListener("change", (e) => {
+    if (inputElement.files.length) {
+      updateThumbnail(dropZoneElement, inputElement.files[0]);
+    }
+  });
+
+  dropZoneElement.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZoneElement.classList.add("drop-zone--over");
+  });
+
+  ["dragleave", "dragend"].forEach((type) => {
+    dropZoneElement.addEventListener(type, (e) => {
+      dropZoneElement.classList.remove("drop-zone--over");
+    });
+  });
+
+  dropZoneElement.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+      inputElement.files = e.dataTransfer.files;
+      updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+    }
+
+    dropZoneElement.classList.remove("drop-zone--over");
+  });
+});
+
+/**
+ * Updates the thumbnail on a drop zone element.
+ *
+ * @param {HTMLElement} dropZoneElement
+ * @param {File} file
+ */
+function updateThumbnail(dropZoneElement, file) {
+  let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+  // First time - remove the prompt
+  if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+    dropZoneElement.querySelector(".drop-zone__prompt").remove();
+  }
+
+  // First time - there is no thumbnail element, so lets create it
+  if (!thumbnailElement) {
+    thumbnailElement = document.createElement("div");
+    thumbnailElement.classList.add("drop-zone__thumb");
+    dropZoneElement.appendChild(thumbnailElement);
+  }
+
+  thumbnailElement.dataset.label = file.name;
+
+  // Show thumbnail for image files
+  if (file.type.startsWith("image/")) {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+    };
+  } else {
+    thumbnailElement.style.backgroundImage = null;
+  }
+}
+
+(function() {
+  window.requestAnimFrame = (function(callback) {
+    return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimaitonFrame ||
+      function(callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
+  })();
+
+  var canvas = document.getElementById("sig-canvas");
+  var ctx = canvas.getContext("2d");
+  ctx.strokeStyle = "#222222";
+  ctx.lineWidth = 4;
+
+  var drawing = false;
+  var mousePos = {
+    x: 0,
+    y: 0
+  };
+  var lastPos = mousePos;
+
+  canvas.addEventListener("mousedown", function(e) {
+    drawing = true;
+    lastPos = getMousePos(canvas, e);
+  }, false);
+
+  canvas.addEventListener("mouseup", function(e) {
+    drawing = false;
+  }, false);
+
+  canvas.addEventListener("mousemove", function(e) {
+    mousePos = getMousePos(canvas, e);
+  }, false);
+
+  // Add touch event support for mobile
+  canvas.addEventListener("touchstart", function(e) {
+
+  }, false);
+
+  canvas.addEventListener("touchmove", function(e) {
+    var touch = e.touches[0];
+    var me = new MouseEvent("mousemove", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(me);
+  }, false);
+
+  canvas.addEventListener("touchstart", function(e) {
+    mousePos = getTouchPos(canvas, e);
+    var touch = e.touches[0];
+    var me = new MouseEvent("mousedown", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(me);
+  }, false);
+
+  canvas.addEventListener("touchend", function(e) {
+    var me = new MouseEvent("mouseup", {});
+    canvas.dispatchEvent(me);
+  }, false);
+
+  function getMousePos(canvasDom, mouseEvent) {
+    var rect = canvasDom.getBoundingClientRect();
+    return {
+      x: mouseEvent.clientX - rect.left,
+      y: mouseEvent.clientY - rect.top
+    }
+  }
+
+  function getTouchPos(canvasDom, touchEvent) {
+    var rect = canvasDom.getBoundingClientRect();
+    return {
+      x: touchEvent.touches[0].clientX - rect.left,
+      y: touchEvent.touches[0].clientY - rect.top
+    }
+  }
+
+  function renderCanvas() {
+    if (drawing) {
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(mousePos.x, mousePos.y);
+      ctx.stroke();
+      lastPos = mousePos;
+    }
+  }
+
+  // Prevent scrolling when touching the canvas
+  document.body.addEventListener("touchstart", function(e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+  document.body.addEventListener("touchend", function(e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+  document.body.addEventListener("touchmove", function(e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+
+  (function drawLoop() {
+    requestAnimFrame(drawLoop);
+    renderCanvas();
+  })();
+
+  function clearCanvas() {
+    canvas.width = canvas.width;
+  }
+
+  // Set up the UI
+  var sigText = document.getElementById("sig-dataUrl");
+  var sigImage = document.getElementById("sig-image");
+  var clearBtn = document.getElementById("sig-clearBtn");
+  var submitBtn = document.getElementById("sig-submitBtn");
+  clearBtn.addEventListener("click", function(e) {
+    clearCanvas();
+    sigText.innerHTML = "Data URL for your signature will go here!";
+    sigImage.setAttribute("src", "");
+  }, false);
+  submitBtn.addEventListener("click", function(e) {
+    var dataUrl = canvas.toDataURL();
+    sigText.innerHTML = dataUrl;
+    sigImage.setAttribute("src", dataUrl);
+  }, false);
+
+})();
+
+
+function Util() {};
+Util.hasClass = function(el, className) {
+    if (el.classList) return el.classList.contains(className);
+    else return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+};
+Util.addClass = function(el, className) {
+    var classList = className.split(' ');
+    if (el.classList) el.classList.add(classList[0]);
+    else if (!Util.hasClass(el, classList[0])) el.className += " " + classList[0];
+    if (classList.length > 1) Util.addClass(el, classList.slice(1).join(' '));
+};
+Util.removeClass = function(el, className) {
+    var classList = className.split(' ');
+    if (el.classList) el.classList.remove(classList[0]);
+    else if (Util.hasClass(el, classList[0])) {
+        var reg = new RegExp('(\\s|^)' + classList[0] + '(\\s|$)');
+        el.className = el.className.replace(reg, ' ');
+    }
+    if (classList.length > 1) Util.removeClass(el, classList.slice(1).join(' '));
+};
+Util.toggleClass = function(el, className, bool) {
+    if (bool) Util.addClass(el, className);
+    else Util.removeClass(el, className);
+};
+Util.setAttributes = function(el, attrs) {
+    for (var key in attrs) {
+        el.setAttribute(key, attrs[key]);
+    }
+};
+Util.getChildrenByClassName = function(el, className) {
+    var children = el.children,
+        childrenByClass = [];
+    for (var i = 0; i < el.children.length; i++) {
+        if (Util.hasClass(el.children[i], className)) childrenByClass.push(el.children[i]);
+    }
+    return childrenByClass;
+};
+Util.is = function(elem, selector) {
+    if (selector.nodeType) {
+        return elem === selector;
+    }
+    var qa = (typeof(selector) === 'string' ? document.querySelectorAll(selector) : selector),
+        length = qa.length,
+        returnArr = [];
+    while (length--) {
+        if (qa[length] === elem) {
+            return true;
+        }
+    }
+    return false;
+};
+Util.setHeight = function(start, to, element, duration, cb) {
+    var change = to - start,
+        currentTime = null;
+    var animateHeight = function(timestamp) {
+        if (!currentTime) currentTime = timestamp;
+        var progress = timestamp - currentTime;
+        var val = parseInt((progress / duration) * change + start);
+        element.style.height = val + "px";
+        if (progress < duration) {
+            window.requestAnimationFrame(animateHeight);
+        } else {
+            cb();
+        }
+    };
+    element.style.height = start + "px";
+    window.requestAnimationFrame(animateHeight);
+};
+Util.scrollTo = function(final, duration, cb) {
+    var start = window.scrollY || document.documentElement.scrollTop,
+        currentTime = null;
+    var animateScroll = function(timestamp) {
+        if (!currentTime) currentTime = timestamp;
+        var progress = timestamp - currentTime;
+        if (progress > duration) progress = duration;
+        var val = Math.easeInOutQuad(progress, start, final - start, duration);
+        window.scrollTo(0, val);
+        if (progress < duration) {
+            window.requestAnimationFrame(animateScroll);
+        } else {
+            cb && cb();
+        }
+    };
+    window.requestAnimationFrame(animateScroll);
+};
+Util.moveFocus = function(element) {
+    if (!element) element = document.getElementsByTagName("body")[0];
+    element.focus();
+    if (document.activeElement !== element) {
+        element.setAttribute('tabindex', '-1');
+        element.focus();
+    }
+};
+Util.getIndexInArray = function(array, el) {
+    return Array.prototype.indexOf.call(array, el);
+};
+Util.cssSupports = function(property, value) {
+    if ('CSS' in window) {
+        return CSS.supports(property, value);
+    } else {
+        var jsProperty = property.replace(/-([a-z])/g, function(g) {
+            return g[1].toUpperCase();
+        });
+        return jsProperty in document.body.style;
+    }
+};
+Util.extend = function() {
+    var extended = {};
+    var deep = false;
+    var i = 0;
+    var length = arguments.length;
+    if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
+        deep = arguments[0];
+        i++;
+    }
+    var merge = function(obj) {
+        for (var prop in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+                if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+                    extended[prop] = extend(true, extended[prop], obj[prop]);
+                } else {
+                    extended[prop] = obj[prop];
+                }
+            }
+        }
+    };
+    for (; i < length; i++) {
+        var obj = arguments[i];
+        merge(obj);
+    }
+    return extended;
+};
+if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
+if (!Element.prototype.closest) {
+    Element.prototype.closest = function(s) {
+        var el = this;
+        if (!document.documentElement.contains(el)) return null;
+        do {
+            if (el.matches(s)) return el;
+            el = el.parentElement || el.parentNode;
+        } while (el !== null && el.nodeType === 1);
+        return null;
+    };
+}
+if (typeof window.CustomEvent !== "function") {
+    function CustomEvent(event, params) {
+        params = params || {
+            bubbles: false,
+            cancelable: false,
+            detail: undefined
+        };
+        var evt = document.createEvent('CustomEvent');
+        evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+        return evt;
+    }
+    CustomEvent.prototype = window.Event.prototype;
+    window.CustomEvent = CustomEvent;
+}
+Math.easeInOutQuad = function(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t + b;
+    t--;
+    return -c / 2 * (t * (t - 2) - 1) + b;
+};
+/**/
+(function() {
+	var LanguagePicker = function(element) {
+		this.element = element;
+		this.select = this.element.getElementsByTagName('select')[0];
+		this.options = this.select.getElementsByTagName('option');
+		this.selectedOption = getSelectedOptionText(this);
+		this.pickerId = this.select.getAttribute('id');
+		this.trigger = false;
+		this.dropdown = false;
+		this.firstLanguage = false;
+		// dropdown arrow inside the button element
+		this.svgPath = '<svg viewBox="0 0 16 16"><polygon points="3,5 8,11 13,5 "></polygon></svg>';
+		initLanguagePicker(this);
+		initLanguagePickerEvents(this);
+	};
+
+	function initLanguagePicker(picker) {
+		// create the HTML for the custom dropdown element
+		picker.element.insertAdjacentHTML('beforeend', initButtonPicker(picker) + initListPicker(picker));
+		
+		// save picker elements
+		picker.dropdown = picker.element.getElementsByClassName('language-picker__dropdown')[0];
+		picker.firstLanguage = picker.dropdown.getElementsByClassName('language-picker__item')[0];
+		picker.trigger = picker.element.getElementsByClassName('language-picker__button')[0];
+	};
+
+	function initLanguagePickerEvents(picker) {
+		// make sure to add the icon class to the arrow dropdown inside the button element
+		Util.addClass(picker.trigger.getElementsByTagName('svg')[0], 'icon');
+		// language selection in dropdown
+		// ⚠️ Important: you need to modify this function in production
+		initLanguageSelection(picker);
+
+		// click events
+		picker.trigger.addEventListener('click', function(){
+			toggleLanguagePicker(picker, false);
+		});
+	};
+
+	function toggleLanguagePicker(picker, bool) {
+		var ariaExpanded;
+		if(bool) {
+			ariaExpanded = bool;
+		} else {
+			ariaExpanded = picker.trigger.getAttribute('aria-expanded') == 'true' ? 'false' : 'true';
+		}
+		picker.trigger.setAttribute('aria-expanded', ariaExpanded);
+		if(ariaExpanded == 'true') {
+			picker.firstLanguage.focus(); // fallback if transition is not supported
+			picker.dropdown.addEventListener('transitionend', function cb(){
+				picker.firstLanguage.focus();
+				picker.dropdown.removeEventListener('transitionend', cb);
+			});
+		}
+	};
+
+	function checkLanguagePickerClick(picker, target) { // if user clicks outside the language picker -> close it
+		if( !picker.element.contains(target) ) toggleLanguagePicker(picker, 'false');
+	};
+
+	function moveFocusToPickerTrigger(picker) {
+		if(picker.trigger.getAttribute('aria-expanded') == 'false') return;
+		if(document.activeElement.closest('.language-picker__dropdown') == picker.dropdown) picker.trigger.focus();
+	};
+
+	function initButtonPicker(picker) { // create the button element -> picker trigger
+		// check if we need to add custom classes to the button trigger
+		var customClasses = picker.element.getAttribute('data-trigger-class') ? ' '+picker.element.getAttribute('data-trigger-class') : '';
+	
+		var button = '<button class="language-picker__button'+customClasses+'" aria-label="'+picker.select.value+' '+picker.element.getElementsByTagName('label')[0].innerText+'" aria-expanded="false" aria-contols="'+picker.pickerId+'-dropdown">';
+		button = button + '<span aria-hidden="true" class="language-picker__label language-picker__flag language-picker__flag--'+picker.select.value+'"><em>'+picker.selectedOption+'</em>';
+		button = button +picker.svgPath+'</span>';
+		return button+'</button>';
+	};
+
+	function initListPicker(picker) { // create language picker dropdown
+		var list = '<div class="language-picker__dropdown" aria-describedby="'+picker.pickerId+'-description" id="'+picker.pickerId+'-dropdown">';
+		list = list + '<p class="sr-only" id="'+picker.pickerId+'-description">'+picker.element.getElementsByTagName('label')[0].innerText+'</p>';
+		list = list + '<ul class="language-picker__list" role="listbox">';
+		for(var i = 0; i < picker.options.length; i++) {
+			var selected = picker.options[i].hasAttribute('selected') ? ' aria-selected="true"' : '',
+				language = picker.options[i].getAttribute('lang');
+			list = list + '<li><a lang="'+language+'" hreflang="'+language+'" href="'+getLanguageUrl(picker.options[i])+'"'+selected+' role="option" data-value="'+picker.options[i].value+'" class="language-picker__item language-picker__flag language-picker__flag--'+picker.options[i].value+'"><span>'+picker.options[i].text+'</span></a></li>';
+		};
+		return list;
+	};
+
+	function getSelectedOptionText(picker) { // used to initialize the label of the picker trigger button
+		var label = '';
+		if('selectedIndex' in picker.select) {
+			label = picker.options[picker.select.selectedIndex].text;
+		} else {
+			label = picker.select.querySelector('option[selected]').text;
+		}
+		return label;
+	};
+
+	function getLanguageUrl(option) {
+		// ⚠️ Important: You should replace this return value with the real link to your website in the selected language
+		// option.value gives you the value of the language that you can use to create your real url (e.g, 'english' or 'italiano')
+		return '#';
+	};
+
+	function initLanguageSelection(picker) {
+		picker.element.getElementsByClassName('language-picker__list')[0].addEventListener('click', function(event){
+			var language = event.target.closest('.language-picker__item');
+			if(!language) return;
+			
+			if(language.hasAttribute('aria-selected') && language.getAttribute('aria-selected') == 'true') {
+				// selecting the same language
+				event.preventDefault();
+				picker.trigger.setAttribute('aria-expanded', 'false'); // hide dropdown
+			} else { 
+				// ⚠️ Important: this 'else' code needs to be removed in production. 
+				// The user has to be redirected to the new url -> nothing to do here
+				event.preventDefault();
+				picker.element.getElementsByClassName('language-picker__list')[0].querySelector('[aria-selected="true"]').removeAttribute('aria-selected');
+				language.setAttribute('aria-selected', 'true');
+				picker.trigger.getElementsByClassName('language-picker__label')[0].setAttribute('class', 'language-picker__label language-picker__flag language-picker__flag--'+language.getAttribute('data-value'));
+				picker.trigger.getElementsByClassName('language-picker__label')[0].getElementsByTagName('em')[0].innerText = language.innerText;
+				picker.trigger.setAttribute('aria-expanded', 'false');
+			}
+		});
+	};
+
+	//initialize the LanguagePicker objects
+	var languagePicker = document.getElementsByClassName('js-language-picker');
+	if( languagePicker.length > 0 ) {
+		var pickerArray = [];
+		for( var i = 0; i < languagePicker.length; i++) {
+			(function(i){pickerArray.push(new LanguagePicker(languagePicker[i]));})(i);
+		}
+
+		// listen for key events
+		window.addEventListener('keyup', function(event){
+			if( event.keyCode && event.keyCode == 27 || event.key && event.key.toLowerCase() == 'escape' ) {
+				// close language picker on 'Esc'
+				pickerArray.forEach(function(element){
+					moveFocusToPickerTrigger(element); // if focus is within dropdown, move it to dropdown trigger
+					toggleLanguagePicker(element, 'false'); // close dropdown
+				});
+			} 
+		});
+		// close language picker when clicking outside it
+		window.addEventListener('click', function(event){
+			pickerArray.forEach(function(element){
+				checkLanguagePickerClick(element, event.target);
+			});
+		});
+	}
+}());
+
+
+
+// 		  // Event listener for language selection
+//       document.getElementById('language-picker-select').addEventListener('change', function() {
+//   var selectedLanguage = this.value;
+//   translateToLanguage(selectedLanguage);
+// });
+
+// // Language Translation function
+// function translateToLanguage(languageCode) {
+//   var translate = new googleTranslate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+//   translate.changeLanguage(languageCode);
+// }
+// function googleTranslateElementInit() {
+//   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+// }
+// </script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/google-translate/2.0.1/googleTranslate.min.js"></script>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+  }
+  </script>
+  
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</script>
+</html>
