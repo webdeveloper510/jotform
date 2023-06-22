@@ -70,8 +70,8 @@
       afterContinue.style.setProperty("display", "none", "important");
       failPayment.style.setProperty("display", "none", "important");
       var continueBtn = document.getElementById("submit");
-      const captureLinkUrl = "http://15.206.159.231:8000/paypal/capture/";
-      const url = "http://15.206.159.231:8000/paypal/";
+      const captureLinkUrl = "http://3.82.65.48:8000/paypal/capture/";
+      const url = "http://3.82.65.48:8000/paypal/";
       const sendCaptureLink = async (captureLink) => {
         try {
           const response = await axios.post(`${captureLinkUrl}`, {
