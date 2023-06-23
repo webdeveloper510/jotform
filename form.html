@@ -14,7 +14,7 @@
   
     <section class="jot-form">
         <!-- <form action=" http://127.0.0.1:8000/submit/" method="POST"> -->
-          <form action=" http://3.82.65.48:8000/submit/" method="POST"></form>
+          <form action=" http://3.82.65.48:8000/submit/" method="POST">
             <section id="language-picker-select">
 
               <div id="google_translate_element"></div>
@@ -319,10 +319,12 @@
         localStorage.setItem("pdf_id", response.data.pdf_id);
         console.log(response.data.pdf_id);
    if(bool){
-    window.location.href ='http://3.82.65.48:5500/payment.html';
+   // window.location.href ='http://127.0.0.1:5500/payment.html';
+         window.location.href ='http://3.82.65.48/payment.html';
 
 
     }
+  
       })
       .catch(error => {
         console.log('Error: ' + error.response.status);
