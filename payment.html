@@ -40,7 +40,7 @@
           Consectetur accusantium ad tenetur eveniet.
         </p>
         <a id="downloadLink" download="Letter.pdf">
-          <button type="button" class="button-free">
+          <button type="button" class="button-free" id="downloadButton">
             Free download
           </button>
         </a>
@@ -70,8 +70,13 @@
       afterContinue.style.setProperty("display", "none", "important");
       failPayment.style.setProperty("display", "none", "important");
       var continueBtn = document.getElementById("submit");
+      var DownLoadButton = document.getElementById('downloadButton')
+
       const captureLinkUrl = "http://3.82.65.48:8000/paypal/capture/";
       const url = "http://3.82.65.48:8000/paypal/";
+     //const captureLinkUrl = "http://127.0.0.1:8000/paypal/capture/";
+     //const url = "http://127.0.0.1:8000/paypal/";
+
       const sendCaptureLink = async (captureLink) => {
         try {
           const response = await axios.post(`${captureLinkUrl}`, {
@@ -79,16 +84,18 @@
           });
 
           letterData = response.data.Letter;
+          console.log(response)
+          localStorage.setItem('pdf_original_id' , response.data.data)
           // letterData="jhgff ghkdfhgfd ghkghd dfghsd fgldjkfgjhg gdhhghdfhh"
 
           // for download Letter
-          const Letter = atob(letterData);
+         // const Letter = atob(letterData);
 
-          const blob = new Blob([Letter], { type: "application/pdf" });
-          const urlToDownload = URL.createObjectURL(blob);
+          //const blob = new Blob([Letter], { type: "application/pdf" });
+         // const urlToDownload = URL.createObjectURL(blob);
 
-          const downloadLink = document.getElementById("downloadLink");
-          downloadLink.href = urlToDownload;
+         // const downloadLink = document.getElementById("downloadLink");
+          //downloadLink.href = urlToDownload;
           beforeContinue.style.display = "none";
           afterContinue.style.display = "block";
         } catch (error) {
@@ -109,8 +116,9 @@
             currency: "AUD",
             pdf_id: localStorage.getItem("pdf_id"),
           });
-
+          console.log(response.data.capture_link,'capture Link <------------------')
           sendCaptureLink(response.data.capture_link);
+
         } catch (error) {
           console.log(
             error,
@@ -123,6 +131,22 @@
       };
 
       continueBtn.addEventListener("click", paymentApi);
+      const downloadBittonPdf = async() =>{
+        pdf_id = localStorage.getItem("pdf_original_id")
+        try{
+          const response = await axios.get(`${captureLinkUrl}${pdf_id}/`)
+          const pdfUrl = response.data.pdf_url;
+          console.log(pdfUrl)
+          const link = document.createElement("a");
+          link.href = pdfUrl;
+          link.download = 'file.pdf';
+          link.click();
+        } catch(error){
+          console.log(error)
+        }
+      }
+      DownLoadButton.addEventListener('click' ,downloadBittonPdf )
+
     </script>
     <!-- Bootstrap link -->
 

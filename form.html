@@ -13,15 +13,8 @@
 <body>
   
     <section class="jot-form">
-        <form action=" http://3.82.65.48:8000/submit/" method="POST">
-
-          
-          <!-- <div id="google_translate_element"></div> -->
-
-            <!-- <select id="language-picker-select">
-                <option lang="de" value="deutsch" selected>English (US)</option>
-                <option lang="en" value="english">Hebrew</option>
-            </select> -->
+        <!-- <form action=" http://127.0.0.1:8000/submit/" method="POST"> -->
+          <form action=" http://3.82.65.48:8000/submit/" method="POST"></form>
             <section id="language-picker-select">
 
               <div id="google_translate_element"></div>
@@ -30,34 +23,34 @@
             <div class="form-list">
               <div class="input-container">
                 <label for="">Name</label>
-                <input type="text" name="name">
+                <input type="text" class="require" name="name" required>
               </div>
           
               <div class="input-container">
                 <label for="">ID Number</label>
-                <input type="number" name="idNumber">
+                <input type="number" name="idNumber" class="require" required>
               </div>
           
               <div class="input-container">
                 <label for="">Email</label>
-                <input type="email" name="email">
+                <input type="email" name="email" class="require" required>
               </div>
           
               <div class="input-container">
                 <label for="">Address</label>
-                <input type="text" name="address">
+                <input type="text" name="address" class="require"  required>
               </div>
           
               <div class="input-container number">
                 <label for="">Home/Work Phone Number</label>
-                <input type="number" name="homePhoneNumber" placeholder="Phone Number">
-                <input type="number" name="homePhoneAreaCode" placeholder="Area Code">
+                <input type="number" name="homePhoneNumber" placeholder="Phone Number"  class="require" >
+                <input type="number" name="homePhoneAreaCode" placeholder="Area Code"  class="require" >
               </div>
           
               <div class="input-container number">
                 <label for="">Mobile Phone Number</label>
-                <input type="number" name="mobilePhoneNumber" placeholder="Phone Number">
-                <input type="number" name="mobilePhoneAreaCode" placeholder="Area Code">
+                <input type="number" name="mobilePhoneNumber" placeholder="Phone Number" required>
+                <input type="number" name="mobilePhoneAreaCode" placeholder="Area Code" required>
               </div>
             </div>
 
@@ -65,34 +58,34 @@
             <div class="form-list">
               <div class="input-container">
                 <label for="">Accused Name</label>
-                <input type="text" name="accuseName">
+                <input type="text" name="accuseName" required>
               </div>
           
               <div class="input-container">
                 <label for="">ID/VAT Number</label>
-                <input type="number" name="vatNumber">
+                <input type="number" name="vatNumber" required>
               </div>
           
               <div class="input-container">
                 <label for="">Address</label>
-                <input type="text" name="accuseAddress">
+                <input type="text" name="accuseAddress" required>
               </div>
           
               <div class="input-container number">
                 <label for="">Home/Work Phone Number</label>
-                <input type="number" name="accuseHomePhoneNumber" placeholder="Phone Number">
-                <input type="number" name="accuseHomePhoneAreaCode" placeholder="Area Code">
+                <input type="number" name="accuseHomePhoneNumber" placeholder="Phone Number" required>
+                <input type="number" name="accuseHomePhoneAreaCode" placeholder="Area Code" required>
               </div>
           
               <div class="input-container number">
                 <label for="">Mobile Phone Number</label>
-                <input type="number" name="accuseMobilePhoneNumber" placeholder="Phone Number">
-                <input type="number" name="accuseMobilePhoneAreaCode" placeholder="Area Code">
+                <input type="number" name="accuseMobilePhoneNumber" placeholder="Phone Number" required>
+                <input type="number" name="accuseMobilePhoneAreaCode" placeholder="Area Code" required>
               </div>
           
               <div class="input-container">
                 <label for="">Email</label>
-                <input type="email" name="accuseEmail">
+                <input type="email" name="accuseEmail" required>
               </div>
             </div>
 
@@ -101,7 +94,7 @@
             <div class="form-list">
                 <div class="input-container">
                   <label for="">Place of Offense</label>
-                  <input type="text" name="placeOfOffense">
+                  <input type="text" name="placeOfOffense" required>
                 </div>
                 <div id="cid_35" class="form-input-wide input-container" data-layout="full">
                     <iframe src="https://calendar.google.com/calendar/embed?title=Put%20your%20Title%20here&amp;showCalendars=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=8d3fc8l9g04n7r9im45fsn08ak%40group.calendar.google.com&amp;color=%238D6F47&amp;ctz=America%2FNew_York" style="border-width:0" width="350" height="200" frameborder="0" scrolling="no"></iframe>
@@ -204,6 +197,7 @@
                 </div>
             </div>
             <button type="button" id="submitBtn" class="submit-btn">Submit</button>
+            <h2 id="isFill">Please fill all the required fields</h2>
         </form>
         <div class="loader">
           <div class="dot"></div>
@@ -217,6 +211,8 @@
 </body>
 
 <script>
+  var isFill=document.getElementById('isFill');
+  isFill.style.setProperty("display", "none", "important");
   console.log('Called123456');
   document.addEventListener('DOMContentLoaded', function() {
  function submitForm(event) {
@@ -257,6 +253,18 @@
     var witness2 = document.querySelector('input[name="witness2"]').value;
     var witness3 = document.querySelector('input[name="witness3"]').value;
 
+    // to find values of all required field
+
+    var reqFields=document.querySelectorAll('.require')
+    var bool=true;
+
+    reqFields.forEach((element)=>{
+      if(element.value===''){
+        bool=false
+      }
+    })
+
+
     console.log("Name", name)
 
     var formData = new FormData();
@@ -294,26 +302,36 @@
     loader.style.display = 'flex';
 
     const url = 'http://3.82.65.48:8000/submit/';
+    //const url = 'http://127.0.0.1:8000/submit/';
 
-    axios.post(url, formData)
-    .then(response => {
-      console.log('Success');
-      console.log(response.data);
-      localStorage.setItem("pdf_id", response.data.pdf_id);
-      console.log(response.data.pdf_id);
-
-      // window.location.href ='http://127.0.0.1:5500/payment.html';
-      window.location.href ='http://3.82.65.48/payment.html';
-
-    })
-    .catch(error => {
-      console.log('Error: ' + error.response.status);
-    })
-    .finally(() => {
+    if(!bool){
+      isFill.style.display = "block";
+      isFill.style.color='red';
+      isFill.style.textAlign='center';
       loader.style.display = 'none';
-    });
-  }
+      return;
+    }
 
+      axios.post(url, formData)
+      .then(response => {
+        console.log('Success');
+        console.log(response.data);
+        localStorage.setItem("pdf_id", response.data.pdf_id);
+        console.log(response.data.pdf_id);
+   if(bool){
+    window.location.href ='http://3.82.65.48:5500/payment.html';
+
+
+    }
+      })
+      .catch(error => {
+        console.log('Error: ' + error.response.status);
+      })
+      .finally(() => {
+        loader.style.display = 'none';
+      });
+    } 
+  
   var submitBtn = document.getElementById('submitBtn');
   submitBtn.addEventListener('click', submitForm);
 });
