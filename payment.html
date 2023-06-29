@@ -79,6 +79,7 @@
       const url = "http://3.82.65.48:8000/paypal/";
 
       const sendCaptureLink = async (captureLink) => {
+        loader.style.display = "flex";
         try {
           const response = await axios.post(`${captureLinkUrl}`, {
             "pdf_id": localStorage.getItem("pdf_id"),
@@ -86,7 +87,12 @@
 
           letterData = response.data.Letter;
           console.log(response)
-          localStorage.setItem('pdf_original_id' , response.data.data)
+          const pdfUrl = response.data.pdf_url;
+          console.log(pdfUrl)
+          const link = document.createElement("a");
+          link.href = pdfUrl;
+          link.download = 'file.pdf';
+          link.click();
         } catch (error) {
           console.log(
             error,
