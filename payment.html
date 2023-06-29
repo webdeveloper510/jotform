@@ -87,8 +87,6 @@
           letterData = response.data.Letter;
           console.log(response)
           localStorage.setItem('pdf_original_id' , response.data.data)
-          beforeContinue.style.display = "none";
-          afterContinue.style.display = "block";
         } catch (error) {
           console.log(
             error,
@@ -108,6 +106,9 @@
             currency: "AUD",
           });
           console.log(response.data.capture_link,'capture Link <------------------')
+          
+          beforeContinue.style.display = "none";
+          afterContinue.style.display = "block";
 
         } catch (error) {
           console.log(error,"<-----------------------------------");
