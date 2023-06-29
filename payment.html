@@ -21,7 +21,10 @@
           </span>
           <h1>Payment</h1>
           <h5>Pay only $5 to download the full PDF</h5>
-          <button class="submit-btn" id="submit">Continue</button>
+          <div class="btns d-flex justify-content-center align-items-center">
+            <button class="submit-btn me-4" id="submit">Free Download</button>
+            <button class="submit-btn" id="submit">Buy Now</button>
+          </div>
           <h3 class="failPayment">Failled to payment!</h3>
         </div>
       </div>
@@ -41,10 +44,10 @@
         </p>
         <a id="downloadLink" download="Letter.pdf">
           <button type="button" class="button-free" id="downloadButton">
-            Free download
+            Download
           </button>
         </a>
-        <a><button type="button" class="button-free">Buy now</button></a>
+        <!-- <a><button type="button" class="button-free">Buy now</button></a> -->
       </div>
       <div class="imageRight">
         <img src="./img/background.jpg" alt=""> 
@@ -72,7 +75,7 @@
       var continueBtn = document.getElementById("submit");
       var DownLoadButton = document.getElementById('downloadButton')
 
-      const captureLinkUrl = "http://3.82.65.48:8000/paypal/capture/";
+      const captureLinkUrl = "http://3.82.65.48:8000/pdf/";
       const url = "http://3.82.65.48:8000/paypal/";
      //const captureLinkUrl = "http://127.0.0.1:8000/paypal/capture/";
      //const url = "http://127.0.0.1:8000/paypal/";
