@@ -77,28 +77,16 @@
 
       const captureLinkUrl = "http://3.82.65.48:8000/pdf/";
       const url = "http://3.82.65.48:8000/paypal/";
-     //const captureLinkUrl = "http://127.0.0.1:8000/paypal/capture/";
-     //const url = "http://127.0.0.1:8000/paypal/";
 
       const sendCaptureLink = async (captureLink) => {
         try {
           const response = await axios.post(`${captureLinkUrl}`, {
-            capture_link: captureLink,
+            "pdf_id": localStorage.getItem("pdf_id"),
           });
 
           letterData = response.data.Letter;
           console.log(response)
           localStorage.setItem('pdf_original_id' , response.data.data)
-          // letterData="jhgff ghkdfhgfd ghkghd dfghsd fgldjkfgjhg gdhhghdfhh"
-
-          // for download Letter
-         // const Letter = atob(letterData);
-
-          //const blob = new Blob([Letter], { type: "application/pdf" });
-         // const urlToDownload = URL.createObjectURL(blob);
-
-         // const downloadLink = document.getElementById("downloadLink");
-          //downloadLink.href = urlToDownload;
           beforeContinue.style.display = "none";
           afterContinue.style.display = "block";
         } catch (error) {
@@ -110,6 +98,7 @@
           loader.style.display = "none";
         }
       };
+      
       const paymentApi = async () => {
         loader.style.display = "flex";
         console.log("called  ", localStorage.getItem("pdf_id"));
@@ -117,23 +106,18 @@
           const response = await axios.post(`${url}`, {
             amount: "5",
             currency: "AUD",
-            pdf_id: localStorage.getItem("pdf_id"),
           });
           console.log(response.data.capture_link,'capture Link <------------------')
-          sendCaptureLink(response.data.capture_link);
 
         } catch (error) {
-          console.log(
-            error,
-            localStorage.getItem("pdf_id"),
-            "<-----------------------------------"
-          );
+          console.log(error,"<-----------------------------------");
           loader.style.display = "none";
           failPayment.style.display="block"
         }
       };
 
       continueBtn.addEventListener("click", paymentApi);
+
       const downloadBittonPdf = async() =>{
         pdf_id = localStorage.getItem("pdf_original_id")
         try{
@@ -148,7 +132,8 @@
           console.log(error)
         }
       }
-      DownLoadButton.addEventListener('click' ,downloadBittonPdf )
+      
+      DownLoadButton.addEventListener('click' ,sendCaptureLink )
 
     </script>
     <!-- Bootstrap link -->
