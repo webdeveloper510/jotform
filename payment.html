@@ -23,36 +23,11 @@
           <h5>Pay only $5 to download the full PDF</h5>
           <div class="btns d-flex justify-content-center align-items-center">
             <button class="submit-btn me-4" id="submit">Free Download</button>
-            <button class="submit-btn" id="submit">Buy Now</button>
+            <button class="submit-btn" id="buySubmit">Buy Now</button>
           </div>
           <h3 class="failPayment">Failled to payment!</h3>
         </div>
       </div>
-    </section>
-    <section
-      class="d-flex"
-      id="downloadPdf"
-    >
-    <div class="container" style="height: 100vh">
-      <div class="download-container">
-        <h1 class="heading">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
-        <p class="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-          voluptates! Magni necessitatibus, est repellat, eum perferendis quis
-          ipsa odit, dignissimos blanditiis aperiam libero doloremque suscipit!
-          Consectetur accusantium ad tenetur eveniet.
-        </p>
-        <a id="downloadLink" download="Letter.pdf">
-          <button type="button" class="button-free" id="downloadButton">
-            Download
-          </button>
-        </a>
-        <!-- <a><button type="button" class="button-free">Buy now</button></a> -->
-      </div>
-      <div class="imageRight">
-        <img src="./img/background.jpg" alt=""> 
-      </div>
-    </div>
     </section>
     <!-- Loader -->
     <div class="loader">
@@ -73,14 +48,22 @@
       afterContinue.style.setProperty("display", "none", "important");
       failPayment.style.setProperty("display", "none", "important");
       var continueBtn = document.getElementById("submit");
+      var buyButton = document.getElementById("buySubmit");
       var DownLoadButton = document.getElementById('downloadButton')
 
       const captureLinkUrl = "http://3.82.65.48:8000/pdf/";
       const url = "http://3.82.65.48:8000/paypal/";
-
-      const sendCaptureLink = async (captureLink) => {
+      
+      const paymentApi = async () => {
         loader.style.display = "flex";
+        console.log("called  ", localStorage.getItem("pdf_id"));
         try {
+          const response = await axios.post(`${url}`, {
+            amount: "5",
+            currency: "AUD",
+          });
+          console.log(response.data.capture_link,'capture Link <------------------')
+          try {
           const response = await axios.post(`${captureLinkUrl}`, {
             "pdf_id": localStorage.getItem("pdf_id"),
           });
@@ -94,27 +77,9 @@
           link.download = 'file.pdf';
           link.click();
         } catch (error) {
-          console.log(
-            error,
-            "In capture Link Api<-----------------------------------"
-          );
-        } finally {
-          loader.style.display = "none";
+          console.log(error,"Error");
         }
-      };
-      
-      const paymentApi = async () => {
-        loader.style.display = "flex";
-        console.log("called  ", localStorage.getItem("pdf_id"));
-        try {
-          const response = await axios.post(`${url}`, {
-            amount: "5",
-            currency: "AUD",
-          });
-          console.log(response.data.capture_link,'capture Link <------------------')
           loader.style.display = "none";
-          beforeContinue.style.display = "none";
-          afterContinue.style.display = "block";
 
         } catch (error) {
           console.log(error,"<-----------------------------------");
@@ -124,33 +89,14 @@
       };
 
       continueBtn.addEventListener("click", paymentApi);
-
-      const downloadBittonPdf = async() =>{
-        pdf_id = localStorage.getItem("pdf_original_id")
-        try{
-          const response = await axios.get(`${captureLinkUrl}${pdf_id}/`)
-          const pdfUrl = response.data.pdf_url;
-          console.log(pdfUrl)
-          const link = document.createElement("a");
-          link.href = pdfUrl;
-          link.download = 'file.pdf';
-          link.click();
-        } catch(error){
-          console.log(error)
-        }
-      }
-      
-      DownLoadButton.addEventListener('click' ,sendCaptureLink )
+      buyButton.addEventListener("click", paymentApi);
 
     </script>
-    <!-- Bootstrap link -->
-
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-    <!-- script for axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
