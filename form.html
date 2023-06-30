@@ -96,8 +96,9 @@
                   <label for="">Place of Offense</label>
                   <input type="text" name="placeOfOffense" required>
                 </div>
-                <div id="cid_35" class="form-input-wide input-container" data-layout="full">
-                    <iframe src="https://calendar.google.com/calendar/embed?title=Put%20your%20Title%20here&amp;showCalendars=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=8d3fc8l9g04n7r9im45fsn08ak%40group.calendar.google.com&amp;color=%238D6F47&amp;ctz=America%2FNew_York" style="border-width:0" width="350" height="200" frameborder="0" scrolling="no"></iframe>
+                <div class="input-container">
+                  <label for="">Select a Date</label>
+                  <input type="date" name="dateOfOffence" required>
                 </div>
 
                 <div class="input-container">
@@ -252,7 +253,9 @@
     var witness1 = document.querySelector('input[name="witness1"]').value;
     var witness2 = document.querySelector('input[name="witness2"]').value;
     var witness3 = document.querySelector('input[name="witness3"]').value;
+    var date = document.querySelector('input[name="dateOfOffence"]').value
 
+    console.log("date", date)
     // to find values of all required field
 
     var reqFields=document.querySelectorAll('.require')
@@ -298,6 +301,7 @@
     formData.append('witness1', witness1);
     formData.append('witness2', witness2);
     formData.append('witness3', witness3);
+    formData.append('date', date);
 
     loader.style.display = 'flex';
 
